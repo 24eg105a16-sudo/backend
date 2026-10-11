@@ -1,0 +1,4 @@
+com\expensetracker\TransactionServiceTest.class
+com\expensetracker\AuthServiceTest.class
+com\expensetracker\BudgetServiceTest.class
+com\expensetracker\ExpenseTrackerApplicationTests.class
