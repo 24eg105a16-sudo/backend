@@ -29,3 +29,35 @@ mvn spring-boot:run -Dspring-boot.run.profiles=h2
 mvn test
 ```
 Runs 11 automated unit and integration tests with JUnit 5 and Mockito.
+
+## Running with Docker
+
+### 1. Build the Docker Image
+From the `backend/` directory:
+```bash
+docker build -t expense-tracker-backend .
+```
+
+### 2. Run with In-Memory H2 Profile (Standalone / Testing)
+```bash
+docker run -d -p 8080:8080 --name expense-tracker-backend \
+  -e SPRING_PROFILES_ACTIVE=h2 \
+  expense-tracker-backend
+```
+
+### 3. Run with MySQL
+```bash
+docker run -d -p 8080:8080 --name expense-tracker-backend \
+  -e DB_URL="jdbc:mysql://<mysql-host>:3306/expense_tracker?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true" \
+  -e DB_USERNAME="root" \
+  -e DB_PASSWORD="your_password" \
+  -e JWT_SECRET="404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970" \
+  -e CORS_ALLOWED_ORIGINS="http://localhost:5173,http://localhost:3000" \
+  expense-tracker-backend
+```
+
+Health check verification:
+```bash
+curl http://localhost:8080/api/health
+```
+

@@ -1,0 +1,19 @@
+# Directories to ignore
+target/
+.git/
+.github/
+.idea/
+.vscode/
+.settings/
+
+# Environment and sensitive files
+.env
+.env.*
+*.log
+
+# Build scripts and caches
+*.bat
+*.cmd
+*.iml
+.classpath
+.project
